@@ -1,0 +1,232 @@
+:root {
+  --fond: #f1eeff;
+  --encre: #1a1033;
+  --jaune: #ffd23f;
+  --rose: #ff6b9d;
+  --bleu: #4361ee;
+  --bord: 3px solid var(--encre);
+  --ombre: 6px 6px 0 var(--encre);
+}
+
+* { box-sizing: border-box; margin: 0; }
+html { scroll-behavior: smooth; font-size: clamp(15px, 0.85rem + 0.3vw, 20px); -webkit-text-size-adjust: 100%; scroll-padding-top: 5rem; }
+img, svg, video { max-width: 100%; height: auto; }
+
+body {
+  font-family: "Bricolage Grotesque", system-ui, sans-serif;
+  background: var(--fond);
+  color: var(--encre);
+  line-height: 1.6;
+  font-size: 1.05rem;
+  overflow-x: hidden;
+  overflow-wrap: break-word;
+}
+
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--bleu); outline-offset: 3px; }
+
+/* Navigation */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 0.8rem max(5vw, env(safe-area-inset-right)) 0.8rem max(5vw, env(safe-area-inset-left));
+  padding-top: max(0.8rem, env(safe-area-inset-top));
+  border-bottom: var(--bord);
+  background: var(--jaune);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.logo { font-weight: 800; font-size: 1.2rem; text-decoration: none; }
+.nav nav { display: flex; gap: 1.5rem; }
+.nav nav a { font-weight: 600; text-decoration: none; padding: 0.5rem 0.2rem; min-height: 44px; display: inline-flex; align-items: center; }
+@media (hover: hover) { .nav nav a:hover { text-decoration: underline; text-decoration-thickness: 3px; } }
+
+/* Sections */
+section { padding: clamp(3rem, 8vw, 6rem) 5vw; max-width: 1200px; margin: 0 auto; }
+h2 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin-bottom: 2rem; line-height: 1.1; }
+h3 { font-size: 1.25rem; font-weight: 600; }
+
+/* Accueil */
+.hero { position: relative; padding-top: 6rem; }
+.hero h1 {
+  font-size: clamp(2.8rem, 9vw, 6.5rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  max-width: 14ch;
+}
+.mot {
+  display: inline-block;
+  background: var(--rose);
+  border: var(--bord);
+  padding: 0 0.2em;
+  transform: rotate(-2deg);
+  box-shadow: var(--ombre);
+}
+.hero p { max-width: 50ch; margin: 2rem 0; font-size: 1.2rem; }
+
+.btn {
+  display: inline-block;
+  padding: 0.8rem 1.6rem;
+  min-height: 48px;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  font-weight: 600;
+  text-decoration: none;
+  background: var(--bleu);
+  color: #fff;
+  border: var(--bord);
+  box-shadow: 4px 4px 0 var(--encre);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+@media (hover: hover) { .btn:hover { transform: translate(4px, 4px); box-shadow: 0 0 0 var(--encre); } }
+.btn:active { transform: translate(4px, 4px); box-shadow: 0 0 0 var(--encre); }
+
+.sticker {
+  position: absolute;
+  right: 5vw;
+  bottom: 1rem;
+  width: 150px;
+  height: 150px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 1rem;
+  font-weight: 600;
+  line-height: 1.25;
+  font-size: 0.95rem;
+  background: var(--jaune);
+  border: var(--bord);
+  border-radius: 50%;
+  transform: rotate(8deg);
+  animation: tourne 1.2s ease-out 0.3s both;
+}
+@keyframes tourne {
+  from { transform: rotate(-120deg) scale(0); }
+  to { transform: rotate(8deg) scale(1); }
+}
+
+/* Projets */
+.projets { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; }
+.projet {
+  display: block;
+  padding: 1rem 1rem 1.5rem;
+  background: #fff;
+  border: var(--bord);
+  box-shadow: var(--ombre);
+  text-decoration: none;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+@media (hover: hover) { .projet:hover { transform: translate(6px, 6px); box-shadow: 0 0 0 var(--encre); } }
+.projet h3 { margin: 1rem 0 0.3rem; }
+.vignette {
+  display: grid;
+  place-items: center;
+  height: 170px;
+  font-weight: 600;
+  border: var(--bord);
+}
+.jaune { background: var(--jaune); }
+.rose { background: var(--rose); }
+.bleu { background: var(--bleu); color: #fff; }
+
+/* À propos et compétences */
+.apropos { display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; align-items: start; }
+.apropos h2 { margin-bottom: 0; }
+.apropos p { max-width: 60ch; margin-bottom: 2rem; }
+.competences { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 1rem; }
+.competences li {
+  padding: 0.3rem 1rem;
+  font-weight: 600;
+  background: var(--jaune);
+  border: var(--bord);
+  border-radius: 999px;
+}
+.competences li:nth-child(even) { background: var(--rose); }
+
+/* Parcours */
+.parcours { list-style: none; padding: 0 0 0 1.5rem; border-left: var(--bord); }
+.parcours li { position: relative; padding-bottom: 2.5rem; }
+.parcours li::before {
+  content: "";
+  position: absolute;
+  left: calc(-1.5rem - 11px);
+  top: 0.45rem;
+  width: 19px;
+  height: 19px;
+  background: var(--rose);
+  border: var(--bord);
+  border-radius: 50%;
+}
+.parcours b { display: block; }
+.parcours span { font-size: 1.25rem; font-weight: 600; }
+
+/* Contact */
+.contact {
+  text-align: center;
+  background: var(--rose);
+  border: var(--bord);
+  box-shadow: var(--ombre);
+  margin: 3rem auto 5rem;
+  width: min(1000px, 90vw);
+}
+.contact p { margin-bottom: 1.5rem; }
+.contact .btn { background: var(--encre); }
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1.5rem 5vw;
+  border-top: var(--bord);
+}
+footer a { margin-left: 1rem; }
+
+/* Très grands écrans */
+@media (min-width: 1600px) {
+  section { max-width: 1400px; }
+  .projets { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* Tablette et petits ordinateurs */
+@media (max-width: 900px) {
+  .apropos { grid-template-columns: 1fr; gap: 1rem; }
+  .sticker { position: static; margin-top: 2.5rem; width: 130px; height: 130px; font-size: 0.85rem; }
+  .hero { padding-top: 4rem; }
+}
+
+/* Téléphone */
+@media (max-width: 600px) {
+  :root { --ombre: 4px 4px 0 var(--encre); --bord: 2px solid var(--encre); }
+  .nav { justify-content: center; text-align: center; gap: 0.2rem; }
+  .nav nav { width: 100%; justify-content: space-between; gap: 0.5rem; font-size: 0.9rem; }
+  .hero h1 { max-width: 100%; }
+  .hero p { font-size: 1.05rem; }
+  .btn { display: block; text-align: center; }
+  .projets { gap: 1.5rem; }
+  .vignette { height: 150px; }
+  .contact { margin: 2rem auto 3rem; padding-inline: 1.2rem; }
+  footer { flex-direction: column; align-items: center; text-align: center; }
+  footer a { margin: 0 0.6rem; }
+}
+
+/* Très petits téléphones */
+@media (max-width: 360px) {
+  .nav nav { font-size: 0.8rem; }
+  .competences li { padding: 0.2rem 0.7rem; font-size: 0.9rem; }
+}
+
+/* Téléphone en mode paysage : barre non collée en haut */
+@media (max-height: 480px) and (orientation: landscape) {
+  .nav { position: static; }
+  .hero { padding-top: 2rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
